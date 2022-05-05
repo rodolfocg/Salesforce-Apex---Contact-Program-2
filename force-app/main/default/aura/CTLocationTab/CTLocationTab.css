@@ -1,0 +1,47 @@
+.THIS .status-grid {
+    background: gainsboro;
+}
+
+.THIS .Yellow {
+    background: yellow;
+}
+
+.THIS .Red {
+    background: red;
+}
+
+.THIS .Orange {
+    background: orange;
+}
+
+.THIS .Green {
+    background: green;
+}
+
+.THIS .user-search {
+    padding-bottom: 30px;
+}
+
+.THIS .health-status {
+    padding: 20px;
+}
+
+.THIS .summary-view {
+    background-color: bisque;
+    padding: 20px;
+}
+
+.THIS .recent-contacts-count {
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    background-color: rgb(194, 192, 189);
+}
+
+.THIS .contacts {
+    background-color: rgb(194, 192, 189);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+}

@@ -1,0 +1,68 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="CTHealthHeaderController">
+    <aura:attribute name="title" type="String" default="Person View" />
+    <aura:attribute name="scope" type="String" default="person" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="statusCount" type="Object" default="" />
+
+    <aura:method name="changeStatusCount" action="{!c.selectedScope}" />
+
+    <div class="slds-page-header slds-page-header_record-home">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-opportunity">
+                            <!-- Using the Queue icon under the "standard" category in https://www.lightningdesignsystem.com/icons/ -->
+                            <lightning:icon iconName="standard:queue" />
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+                            <div class="slds-page-header__name-title">
+                                <h1>
+                                    <span>Contact Tracing</span>
+                                    <span class="slds-page-header__title slds-truncate">{!v.title}</span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-page-header__col-actions">
+                <div class="slds-page-header__controls">
+                    <div class="slds-page-header__control">
+                        <button
+                            class="slds-button slds-button_neutral slds-button_stateful slds-not-selected"
+                            aria-live="assertive"
+                            aria-pressed="false"
+                        >
+                            <span class="slds-text-not-selected" onclick="{!c.createRecord}"> Add New</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-page-header__row slds-page-header__row_gutters">
+            <div class="slds-page-header__col-details">
+                <ul class="slds-page-header__detail-row">
+                    <li class="slds-page-header__detail-block green-status header-item">
+                        <div class="slds-text-title slds-truncate" title="Green">Green</div>
+                        <div class="slds-truncate">{!v.statusCount.Green}</div>
+                    </li>
+                    <li class="slds-page-header__detail-block yellow-status header-item">
+                        <div class="slds-text-title slds-truncate" title="Yellow">Yellow</div>
+                        <div class="slds-truncate">{!v.statusCount.Yellow}</div>
+                    </li>
+                    <li class="slds-page-header__detail-block orange-status header-item">
+                        <div class="slds-text-title slds-truncate" title="Orange">Orange</div>
+                        <div class="slds-truncate">{!v.statusCount.Orange}</div>
+                    </li>
+                    <li class="slds-page-header__detail-block red-status header-item">
+                        <div class="slds-text-title slds-truncate" title="Red">Red</div>
+                        <div class="slds-truncate">{!v.statusCount.Red}</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</aura:component>

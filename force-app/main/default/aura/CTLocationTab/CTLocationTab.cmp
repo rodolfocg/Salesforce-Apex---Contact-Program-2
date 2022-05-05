@@ -1,0 +1,94 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="CTLocationTabController">
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="isSearching" type="Boolean" default="false" />
+    <aura:attribute name="resultsFound" type="Boolean" default="false" />
+
+    <aura:attribute name="name" type="String" />
+    <aura:attribute name="address" type="String" />
+    <aura:attribute name="pin_code" type="String" />
+    <aura:attribute name="status" type="String" />
+    <aura:attribute name="red_score" type="Integer" />
+    <aura:attribute name="status_updated_on" type="Date" />
+    <aura:attribute name="contacts_count" type="Integer" default="0" />
+
+    <div class="container">
+        <div class="slds-grid slds-grid_align-end slds-grid_vertical-align-end user-search">
+            <div class="slds-col slds-m-right--small">
+                <span>
+                    <lightning:input
+                        name="search"
+                        label="Enter a Location ID to Search"
+                        type="search"
+                        aura:id="enter-search"
+                        isLoading="{!v.isSearching}"
+                        placeholder="Search here... "
+                    />
+                </span>
+            </div>
+            <div class="slds-col">
+                <span><lightning:button label="Search Location" title="Search Location" onclick="{! c.handleLocationSearchClick }" /></span>
+            </div>
+        </div>
+
+        <aura:if isTrue="{!v.resultsFound}">
+            <div class="slds-col slds-size_8-of-12">
+                <div class="{!v.status + ' slds-grid slds-wrap health-status'}">
+                    <div
+                        class="
+                            slds-col--padded slds-col--padded
+                            slds-size--1-of-2
+                            slds-small-size--1-of-1
+                            slds-medium-size--6-of-6
+                            slds-large-size--12-of-12
+                        "
+                    >
+                        {!v.name} current health status is {!v.status}
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap summary-view">
+                    <div
+                        class="slds-col--padded slds-size--1-of-2 slds-small-size--1-of-1 slds-medium-size--2-of-6 slds-large-size--3-of-12"
+                    >
+                        <span>Address: {!v.address}</span>
+                    </div>
+                    <div
+                        class="slds-col--padded slds-size--1-of-2 slds-small-size--1-of-1 slds-medium-size--2-of-6 slds-large-size--3-of-12"
+                    >
+                        <span>Pin Code: {!v.pin_code}</span>
+                    </div>
+                    <div
+                        class="slds-col--padded slds-size--1-of-2 slds-small-size--1-of-1 slds-medium-size--2-of-6 slds-large-size--3-of-12"
+                    >
+                        <span>Status updated on: {!v.status_updated_on}</span>
+                    </div>
+                    <div
+                        class="slds-col--padded slds-size--1-of-2 slds-small-size--1-of-1 slds-medium-size--2-of-6 slds-large-size--3-of-12"
+                    >
+                        <span>Contact in last 30 days: {!v.contacts_count}</span>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap recent-contacts-count">
+                    <div
+                        class="slds-col--padded slds-size--1-of-2 slds-small-size--1-of-1 slds-medium-size--2-of-6 slds-large-size--3-of-12"
+                    >
+                        <span>Recent contacts: {!v.contacts_count}</span>
+                    </div>
+                </div>
+                <aura:if isTrue="{!(v.contacts_count > 0)}">
+                    <div class="slds-grid slds-wrap contacts">
+                        <div class="slds-col--padded slds-large-size--12-of-12">
+                            <lightning:datatable
+                                keyField="id"
+                                data="{! v.data }"
+                                onrowaction="{! c.handleRowAction }"
+                                columns="{! v.columns }"
+                                hideCheckboxColumn="true"
+                            />
+                        </div>
+                    </div>
+                </aura:if>
+            </div>
+        </aura:if>
+    </div>
+</aura:component>

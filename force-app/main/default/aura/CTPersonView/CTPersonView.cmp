@@ -1,0 +1,32 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="CTUpdatePersonHealthStatusController">
+    <aura:handler event="c:CTPersonSelectEvent" action="{!c.onPersonSelect}" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="status" type="String" />
+
+    <!--
+        * Using a string type array.
+        * Make sure NOT to use space in between the default values (this could lead to unexpected errors).
+    -->
+    <aura:attribute name="fields" type="String[]" default="['Name','Mobile__c','Token__c','Health_Status__c','Status_Update_Date__c']" />
+
+    <!--
+        * Using "recordForm" which is an out of the box Aura component that can be used for displaying records by type
+        * Using the "Person__c" custom object type
+    -->
+    <aura:if isTrue="{! !empty(v.recordId)}">
+        <lightning:card variant="Narrow" title="Person details" iconName="standard:account_info">
+            <div class="{!v.status + ' person-card'}">
+                <lightning:recordForm recordId="{!v.recordId}" objectApiName="Person__c" fields="{!v.fields}" columns="1" mode="readonly" />
+            </div>
+            <aura:if isTrue="{!v.status != 'Red'}">
+                <lightning:button
+                    class="slds-m-around--x-small"
+                    variant="destructive-text"
+                    label="Change to Red Status"
+                    title="Change to Red Status"
+                    onclick="{! c.handleChangeToRed }"
+                />
+            </aura:if>
+        </lightning:card>
+    </aura:if>
+</aura:component>

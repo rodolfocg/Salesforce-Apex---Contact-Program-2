@@ -1,0 +1,27 @@
+<aura:component implements="force:appHostable">
+    <aura:attribute name="scope" type="String" default="person" />
+    <div class="container">
+        <lightning:layout multipleRows="true">
+            <lightning:layoutItem size="12">
+                <c:CTHealthHeader aura:id="healthHeader" />
+            </lightning:layoutItem>
+            <lightning:layoutItem size="12">
+                <lightning:tabset variant="vertical">
+                    <lightning:tab label="Person View" id="person_view" onactive="{! c.handleActive }">
+                        <!-- Passing scope to CTRecentChanges component scope-->
+                        <c:CTRecentChanges scope="person" />
+                    </lightning:tab>
+                    <lightning:tab label="Location View" id="location_view" onactive="{! c.handleActive }">
+                        <c:CTRecentChanges scope="location" />
+                    </lightning:tab>
+                    <lightning:tab label="Person" id="person_tab_view" onactive="{! c.handleActive }">
+                        <c:CTPersonTab />
+                    </lightning:tab>
+                    <lightning:tab label="Location" id="location_tab_view" onactive="{! c.handleActive }">
+                        <c:CTLocationTab />
+                    </lightning:tab>
+                </lightning:tabset>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+</aura:component>

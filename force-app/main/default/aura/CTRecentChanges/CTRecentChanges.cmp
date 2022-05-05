@@ -1,0 +1,51 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="CTRecentChangesController">
+    <aura:handler name="init" value="{!this }" action="{!c.doInit }" />
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="isSearching" type="Boolean" default="false" />
+    <aura:attribute name="scope" type="String" default="person" />
+    <aura:attribute name="initialResponse" type="List" />
+    <aura:registerEvent name="CTLocationSelectEvent" type="c:CTLocationSelectEvent" />
+    <aura:registerEvent name="CTPersonSelectEvent" type="c:CTPersonSelectEvent" />
+
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_2-of-3">
+            <lightning:card variant="Narrow" title="Recent Changes" iconName="standard:search">
+                <!-- Search component-->
+                <aura:set attribute="actions">
+                    <div onkeyup="{! c.handleKeyUp }">
+                        <lightning:input
+                            name="search"
+                            label="Enter some text to search and hit enter"
+                            type="search"
+                            aura:id="enter-search"
+                            isLoading="{!v.isSearching}"
+                            placeholder="Search here... "
+                        />
+                    </div>
+                </aura:set>
+
+                <!-- User information display component-->
+                <lightning:layout horizontalAlign="left" class="slds-grid_vertical-align-end" multipleRows="true">
+                    <lightning:layoutItem size="12" padding="around-small">
+                        <lightning:datatable
+                            keyField="id"
+                            data="{! v.data }"
+                            onrowaction="{! c.handleRowAction }"
+                            columns="{! v.columns }"
+                            hideCheckboxColumn="true"
+                        />
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </lightning:card>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <aura:if isTrue="{!v.scope == 'location'}">
+                <c:CTLocationView />
+                <aura:set attribute="else">
+                    <c:CTPersonView />
+                </aura:set>
+            </aura:if>
+        </div>
+    </div>
+</aura:component>
