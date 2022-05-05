@@ -14,7 +14,7 @@ Person and Location tracing: Identifies names, visit dates and locations that we
 //Dashboards 
 
 ----Location View: Count and details of locations used by the persons. Locations can be used to trace person to person relations (Visitation etc.) and widespread of the virus.  (COMPLETED)
-Aura Dashboard (WORK-IN-PROGRESS)
+Aura Dashboard (Completed)
 
 ---Health Admin view: Dashboard used by the administrator to get an overview of how many people are in Red Status or Green, Yellow and Orange status.
 -Show how many persons are in each Status (Score 1 to 10). (COMPLETED)
@@ -23,13 +23,13 @@ Aura Dashboard (WORK-IN-PROGRESS)
 
 -Recent updates, locations and visit dates on the Health Card  (COMPLETED)
 
--Aura dashboard (WORK-IN-PROGRESS)
+-Aura dashboard (Completed)
 
 //USER VIEW DashBoard:
 Used by the individuals to check persons and locations they personally contacted in 30. (COMPLETED)
 Each one has a health card that contains: phone number, update date and people he contacted in the last 30 days. (Only the admins can see the name and phones from the health cards. Common users will only see a token value, that can be submitted to an admin). (COMPLETED)
 
-Aura Dashboard (WORK-IN-PROGRESS)
+Aura Dashboard (Completed)
 
 SALESFORCE 2022
 
